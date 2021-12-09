@@ -78,3 +78,9 @@ export default ScreenName;
 ```
 
 `ScreenName` will be `Home`, `SignUp` or `Scan`.
+
+### Install react-navigation
+We need to install some utilities to handle navigation and other view actions in the app
+```
+npm install @react-navigation/native react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view @react-navigation/stack @react-navigation/bottom-tabs
+```
