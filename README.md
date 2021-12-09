@@ -1,12 +1,14 @@
-# Digital Wallet
-UI for a digital wallet react native app.
+# Build a Digital Wallet with React Native
+Tutorial to build the UI for a digital wallet app in react native.
 
 ## How do we build it ?
 All steps are in commits <- link to define
 
 ### Project initialisation
 Initialise the project with
-`npx react-native init DigitalWallet`
+```
+npx react-native init DigitalWallet
+```
 
 ### Config react native
 Create a file `react-native.config.js` at the root of the project folder with the following content
