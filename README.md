@@ -148,3 +148,17 @@ or
 ```
 npm run ios
 ```
+
+## Install react-native-linear-gradient
+As we need gradient to design the SignUp screen, we install react-native-linear-gradient
+```
+npm react-native-linear-gradient
+npx react-native link
+```
+
+For iOS, run the following commands too :
+```
+cd ios
+pod install
+cd  ..
+```
