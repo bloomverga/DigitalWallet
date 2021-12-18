@@ -50,6 +50,27 @@ const SignUp = () => {
     )
   }
 
+  function renderLogo() {
+    return (
+      <View
+        style={{
+          marginTop: SIZES.padding * 5,
+          height: 100,
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Image
+          source= {images.wallieLogo}
+          resizeMode= "contain"
+          style={{
+            width: "50%"
+          }}
+        />
+      </View>
+    )
+  }
+  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : null}
@@ -61,6 +82,7 @@ const SignUp = () => {
       >
         <ScrollView>
           { renderHeader() }
+          { renderLogo() }
         </ScrollView>
       </LinearGradient>
     </KeyboardAvoidingView>

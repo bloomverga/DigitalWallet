@@ -267,3 +267,45 @@ const SignUp = () => {
 return (
 ...
 ```
+
+### Design logo section of the SignUp Screen
+In your `screens/SignUp.js` file, add the `renderLogo()` instruction
+```
+...
+        <ScrollView>
+          { renderHeader() }
+          { renderLogo() }   // <=  add this line
+        </ScrollView>
+...
+```
+Then define the `renderLogo()` function right after your `renderHeader()` function
+```
+...
+  function renderHeader()
+    ...
+  }
+
+  function renderLogo() {
+    return (
+      <View
+        style={{
+          marginTop: SIZES.padding * 5,
+          height: 100,
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <Image
+          source= {images.wallieLogo}
+          resizeMode= "contain"
+          style={{
+            width: "50%"
+          }}
+        />
+      </View>
+    )
+  }
+  
+  return (
+...
+```
