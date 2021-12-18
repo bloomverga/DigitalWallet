@@ -162,10 +162,11 @@ cd ios
 pod install
 cd  ..
 ```
-# Design the basic SignUp Screen
+## Design the SignUp Screen
+### Design the basic SignUp Screen
 We Design the basic SignUp Screen with a KeyBoardAvoidingView, a green linear gradient background and a Scroll View().
 
-Modify `SignUp.js` to the following
+Modify `screens/SignUp.js` to the following
 ```
 import React from 'react'
 import {
@@ -204,4 +205,65 @@ const SignUp = () => {
 }
 
 export default SignUp;
+```
+
+### Design the header section of the Sign Up Screen
+In your `screens/SignUp.js` file, replace the line
+```
+...
+        <ScrollView>
+          <Text>SignUp</Text>  // <= Replace this line
+        </ScrollView>
+...
+```
+with the function to render the Header
+```
+...
+        <ScrollView>
+          { renderHeader() }  // <=  with this line
+        </ScrollView>
+...
+```
+
+Then define the `renderHeader()` function just right after  `const SignUp = () => {` in your `screens/SignUp.js` file
+```
+...
+const SignUp = () => {
+  // renderHeader() function starts here
+  function renderHeader() {
+    return (
+      <TouchableOpacity
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: SIZES.padding * 3,
+          paddingHorizontal: SIZES.padding * 2
+        }}
+        onPress={() => console.log("Sign Up")}
+      >
+        <Image
+          source={icons.back}
+          resizeMode="contain"
+          style={{
+            width: 20,
+            height: 20,
+            tintColor: COLORS.white
+          }}
+        />
+        <Text
+          style={{
+            marginLeft: SIZES.padding * 1.5,
+            color: COLORS.white,
+            ...FONTS.h4
+          }}
+        >
+          Sign Up
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+  // renderHeader() function ends here.
+  
+return (
+...
 ```
