@@ -81,8 +81,70 @@ export default ScreenName;
 
 `ScreenName` will be `Home`, `SignUp` or `Scan`.
 
-### Install react-navigation
+### Install navigation utilities
 We need to install some utilities to handle navigation and other view actions in the app
 ```
-npm install @react-navigation/native react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view @react-navigation/stack @react-navigation/bottom-tabs
+npm install @react-navigation/native react-native-reanimated@2.2.4 react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view @react-navigation/stack @react-navigation/bottom-tabs
+```
+We have to install the `2.2.4` version  of `react-native-reanimated` due to some [issue](https://stackoverflow.com/questions/70335156/how-to-resolve-react-native-navigation-error-while-installing-version-6/70336901#70336901) with the `2.3.0 (latest)` version.
+
+### Updating App.js and add a default SignUp Screen
+Here you'll update `App.js` to reflect the app's behave. When launched the app will land on the Signup page.
+
+Modify the `App.js` file into the following :
+```
+import React from 'react';
+import { createStackNavigator } from "@react-navigation/stack"
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native"
+
+import { SignUp } from './screens'
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    borders: "transparent"
+  }
+}
+
+const Stack = createStackNavigator()
+
+const App = () => {
+  return (
+    <NavigationContainer theme={theme}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+        initialRouteName={'SignUp'}
+      >
+        <Stack.Screen name="SignUp" component={SignUp}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default App;
+```
+
+Then link the assets to the project.
+```
+npx react-native link
+```
+
+For iOS, run the following commands after :
+```
+cd ios
+pod install
+cd  ..
+```
+
+Run the app to test it out :
+```
+npm run android
+```
+or
+
+```
+npm run ios
 ```
