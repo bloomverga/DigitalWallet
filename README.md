@@ -505,6 +505,26 @@ The password form field will be an Input with a secureTextEntry to hide characte
             selectionColor= {COLORS.white}
             secureTextEntry= {true}
           />
+
+          <TouchableOpacity
+            style={{
+              position: 'absolute',
+              right: 0,
+              bottom: 10,
+              height: 30,
+              width: 30
+            }}
+            onPress={() => console.log('toggle')}
+          >
+            <Image
+              source={icons.eye}
+              style={{
+                height: 20,
+                width: 20,
+                tintColor: COLORS.white
+              }}
+            />
+          </TouchableOpacity>
         </View>
 ...
 ```
