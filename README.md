@@ -528,3 +528,58 @@ The password form field will be an Input with a secureTextEntry to hide characte
         </View>
 ...
 ```
+
+#### Add signup validation button
+Add the `renderButton()` instruction in your `screens/SignUp.js` file.
+```
+...
+        <ScrollView>
+          { renderHeader() }
+          { renderLogo() }
+          { renderForm() }
+          { renderButton() }   // <=  add this line
+        </ScrollView>
+...
+```
+Then define the `renderButton()` function.
+```
+...
+  function renderHeader() {
+    ...
+  }
+
+  function renderLogo() {
+    ...
+  }
+
+  function renderForm() {
+    ...
+  }
+
+  function renderButton() {
+    return (
+      <View style = {{ margin: SIZES.padding * 3}}>
+        <TouchableOpacity
+          style={{
+            height: 60,
+            backgroundColor: COLORS.black,
+            borderRadius: SIZES.radius,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onPress={ () => console.log("Navigate to Home")}
+        >
+          <Text style={{
+            color: COLORS.white,
+            ...FONTS.h3
+          }}>
+            Continue
+          </Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+  
+  return (
+...
+```
