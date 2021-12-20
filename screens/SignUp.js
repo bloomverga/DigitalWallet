@@ -72,18 +72,46 @@ const SignUp = () => {
   }
 
   function renderForm() {
-      return (
+    return(
+      <View
+        style={{
+          marginTop: SIZES.padding * 3,
+          marginHorizontal: SIZES.padding * 3
+        }}
+      >
+        {/* Full Name */}
         <View
           style={{
-            marginTop: SIZES.padding * 3,
-            marginHorizontal: SIZES.padding * 3
+            marginTop: SIZES.padding * 3
           }}
         >
-          {/* Full Name */}
-          {/* Phone Number */}
-          {/* Password */}
+          <Text
+            style={{
+              color: COLORS.lightGreen,
+              ...FONTS.body3
+            }}
+          >
+            Full Name
+          </Text>
+          <TextInput
+            style={{
+              marginVertical: SIZES.padding,
+              borderBottomColor: COLORS.white,
+              borderBottomWidth: 1,
+              height: 40,
+              color: COLORS.white,
+              ...FONTS.body3
+            }}
+            placeholder="Enter Full Name"
+            placeholderTextColor={COLORS.white}
+            selectionColor={COLORS.white}
+          />
         </View>
-      )
+
+        {/* Phone Number */}
+        {/* Password */}
+      </View>
+    )
   }
   return (
     <KeyboardAvoidingView

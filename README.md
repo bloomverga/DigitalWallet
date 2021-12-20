@@ -351,3 +351,37 @@ Then define the `renderForm()` function.
   return (
 ...
 ```
+#### Design full name input
+In the Form section, add the design of the full name's input just right below `{/* Full Name */}`
+```
+...
+         {/* Full Name */}
+         <View
+            style={{
+              marginTop: SIZES.padding * 3
+            }}
+          >
+            <Text
+              style={{
+                color: COLORS.lightGreen,
+                ...FONTS.body3
+              }}
+            >
+              Full Name
+            </Text>
+            <TextInput
+              style={{
+                marginVertical: SIZES.padding,
+                borderBottomColor: COLORS.white,
+                borderBottomWidth: 1,
+                height: 40,
+                color: COLORS.white,
+                ...FONTS.body3
+              }}
+              placeholder="Enter Full Name"
+              placeholderTextColor={COLORS.white}
+              selectionColor={COLORS.white}
+            />
+          </View>
+...
+```
