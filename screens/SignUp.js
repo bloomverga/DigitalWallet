@@ -70,7 +70,21 @@ const SignUp = () => {
       </View>
     )
   }
-  
+
+  function renderForm() {
+      return (
+        <View
+          style={{
+            marginTop: SIZES.padding * 3,
+            marginHorizontal: SIZES.padding * 3
+          }}
+        >
+          {/* Full Name */}
+          {/* Phone Number */}
+          {/* Password */}
+        </View>
+      )
+  }
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : null}
@@ -81,8 +95,9 @@ const SignUp = () => {
         style={{ flex: 1 }}
       >
         <ScrollView>
-          { renderHeader() }
-          { renderLogo() }
+          {renderHeader()}
+          {renderLogo()}
+          {renderForm()}
         </ScrollView>
       </LinearGradient>
     </KeyboardAvoidingView>

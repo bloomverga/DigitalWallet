@@ -163,6 +163,7 @@ pod install
 cd  ..
 ```
 ## Design the SignUp Screen
+All the work in this part will be done in the `screens/SignUp.js` file.
 ### Design the basic SignUp Screen
 We Design the basic SignUp Screen with a KeyBoardAvoidingView, a green linear gradient background and a Scroll View().
 
@@ -281,7 +282,7 @@ In your `screens/SignUp.js` file, add the `renderLogo()` instruction
 Then define the `renderLogo()` function right after your `renderHeader()` function
 ```
 ...
-  function renderHeader()
+  function renderHeader() {
     ...
   }
 
@@ -302,6 +303,47 @@ Then define the `renderLogo()` function right after your `renderHeader()` functi
             width: "50%"
           }}
         />
+      </View>
+    )
+  }
+  
+  return (
+...
+```
+
+### Design form section
+Add the `renderForm()` instruction in your `screens/SignUp.js` file.
+```
+...
+        <ScrollView>
+          { renderHeader() }
+          { renderLogo() }
+          { renderForm() }   // <=  add this line
+        </ScrollView>
+...
+```
+Then define the `renderForm()` function.
+```
+...
+  function renderHeader() {
+    ...
+  }
+
+  function renderLogo() {
+    ...
+  }
+
+  function renderForm() {
+    return (
+      <View
+        style={{
+          marginTop: SIZES.padding * 3,
+          marginHorizontal: SIZES.padding * 3
+        }}
+      >
+        {/* Full Name */}
+        {/* Phone Number */}
+        {/* Password */}
       </View>
     )
   }
