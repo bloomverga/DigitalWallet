@@ -478,3 +478,33 @@ The Phone number Input has two main components, the country code -with a down ar
         </View>
 ...
 ```
+
+#### Basic Design of password Input
+The password form field will be an Input with a secureTextEntry to hide characters when typed by the user.
+```
+...
+        {/* Password */}
+        <View
+          style={{
+            marginTop: SIZES.padding * 2
+          }}
+        >
+          <Text style={{ color: COLORS.lightGreen, ...FONTS.body3 }}>
+            Password
+          </Text>
+          <TextInput
+            style={{
+              marginVertical: SIZES.padding,
+              borderBottomColor: COLORS.white,
+              borderBottomWidth: 1,
+              color: COLORS.white,
+              ...FONTS.body3
+            }}
+            placeholder= "Enter Password"
+            placeholderTextColor= {COLORS.white}
+            selectionColor= {COLORS.white}
+            secureTextEntry= {true}
+          />
+        </View>
+...
+```

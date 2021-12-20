@@ -194,8 +194,30 @@ const SignUp = () => {
             />
           </View>
         </View>
-        
+
         {/* Password */}
+        <View
+          style={{
+            marginTop: SIZES.padding * 2
+          }}
+        >
+          <Text style={{ color: COLORS.lightGreen, ...FONTS.body3 }}>
+            Password
+          </Text>
+          <TextInput
+            style={{
+              marginVertical: SIZES.padding,
+              borderBottomColor: COLORS.white,
+              borderBottomWidth: 1,
+              color: COLORS.white,
+              ...FONTS.body3
+            }}
+            placeholder= "Enter Password"
+            placeholderTextColor= {COLORS.white}
+            selectionColor= {COLORS.white}
+            secureTextEntry= {true}
+          />
+        </View>
       </View>
     )
   }
