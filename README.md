@@ -583,3 +583,30 @@ Then define the `renderButton()` function.
   return (
 ...
 ```
+
+#### Add Secure text entry toggle on the Password field
+When we initialized the password field, we set a non functionning "Show Password" button. Now we'll make it effective to toggle secureTextEntry when the user click on it.
+You need to first define the state variable that will be used to store the toggle boolean
+```
+...
+const SignUp = () => {
+  const [showPassword, setShowPassword] = React.useState(false);    // <= Add This line
+...
+``` 
+Next, in the password field code change the followings :
+```
+secureTextEntry= {true}
+```
+into
+```
+secureTextEntry= {!showPassword}
+```
+Then
+```
+onPress={() => console.log("Toggle")}
+```
+into
+```
+onPress={() => setShowPassword(!showPassword)}
+```
+Your password field should toggle properly.

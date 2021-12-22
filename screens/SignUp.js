@@ -17,6 +17,8 @@ import LinearGradient from 'react-native-linear-gradient'
 import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 
 const SignUp = () => {
+  const [showPassword, setShowPassword] = React.useState(false);
+
   function renderHeader() {
     return (
       <TouchableOpacity
@@ -215,7 +217,7 @@ const SignUp = () => {
             placeholder= "Enter Password"
             placeholderTextColor= {COLORS.white}
             selectionColor= {COLORS.white}
-            secureTextEntry= {true}
+            secureTextEntry= {!showPassword}
           />
           
           <TouchableOpacity
@@ -226,10 +228,10 @@ const SignUp = () => {
               height: 30,
               width: 30
             }}
-            onPress={() => console.log('toggle')}
+            onPress={() => setShowPassword(!showPassword)}
           >
             <Image
-              source={icons.eye}
+              source={showPassword ? icons.disable_eye : icons.eye}
               style={{
                 height: 20,
                 width: 20,
@@ -265,7 +267,7 @@ const SignUp = () => {
       </View>
     )
   }
-  
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : null}
