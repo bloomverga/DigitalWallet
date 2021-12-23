@@ -17,7 +17,36 @@ import LinearGradient from 'react-native-linear-gradient'
 import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 
 const SignUp = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = React.useState(false)
+  
+  const [areas, setAreas] = React.useState([])
+  const [selectedArea, setSelectedArea] = React.useState(null)
+  const [modalVisible, setModalVisible] = React.useState(false)
+
+  React.useEffect(() => {
+    fetch("https://restcountries.com/v2/all")
+    .then(response => response.json())
+    .then(data => {
+      let areaData = data.map(item => {
+        return {
+          code : item.alpha2Code,
+          name : item.name,
+          callingCode: `+${item.callingCodes[0]}`,
+          flag: `https://flagcdn.com/w640/${item.alpha2Code.toLowerCase()}.png`
+        }
+      })
+      
+      setAreas(areaData)
+
+      if(areaData.length > 0) {
+        let defaultData = areaData.filter(a => a.code == "US")
+        
+        if(defaultData.length > 0) {
+          setSelectedArea(defaultData[0])
+        }
+      }
+    })
+  }, [])
 
   function renderHeader() {
     return (
@@ -159,7 +188,7 @@ const SignUp = () => {
               </View>
               <View style={{ justifyContent: 'center', marginLeft: 5 }}>
                   <Image
-                    source={images.usFlag}
+                    source={{ uri: selectedArea?.flag }}
                     resizeMode="contain"
                     style={{
                       width: 30,
@@ -174,7 +203,7 @@ const SignUp = () => {
                       ...FONTS.body3
                     }}
                   >
-                    US +1
+                    {selectedArea?.callingCode}
                   </Text>
               </View>
             </TouchableOpacity>

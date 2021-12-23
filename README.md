@@ -311,7 +311,7 @@ Then define the `renderLogo()` function right after your `renderHeader()` functi
 ...
 ```
 
-### Design form section
+### Basic Form Section design
 Add the `renderForm()` instruction in your `screens/SignUp.js` file.
 ```
 ...
@@ -610,3 +610,81 @@ into
 onPress={() => setShowPassword(!showPassword)}
 ```
 Your password field should toggle properly.
+
+### Complete Form section design
+#### Complete design of Phone Number field
+You remember the basic Phone Number field we first built ? Now we will make it fetch dynamically conuntries data from online APIs.
+Two APIs will be used :
+- [restcountries.com](restcountries.com) to fetch countries' code, name and calling code
+- [flagcdn.com](flagcdn.com) to fecth countries' flags in `.png` format. Since `restcountries.com` doesn't provide flags in `png` format.
+
+Let's add the following our code in `screens/SignUp.js`
+```
+...
+const SignUp = () => {
+  /* CODE TO ADD STARTING HERE */
+  const [showPassword, setShowPassword] = React.useState(false)
+  
+  const [areas, setAreas] = React.useState([])                  // The state variable which will contain all countries data for the modal
+  const [selectedArea, setSelectedArea] = React.useState(null)  // The state variable containing the selected country's data
+  const [modalVisible, setModalVisible] = React.useState(false) // The boolean to show or hide the model
+
+  React.useEffect(() => {                                       // Here we fetch countries data from restcountries.com
+    fetch("https://restcountries.com/v2/all")
+    .then(response => response.json())
+    .then(data => {
+      let areaData = data.map(item => {
+        return {
+          code : item.alpha2Code,
+          name : item.name,
+          callingCode: `+${item.callingCodes[0]}`,
+          flag: `https://flagcdn.com/w640/${item.alpha2Code.toLowerCase()}.png`  // We set flag's uri according to flagcdn.com format
+        }
+      })
+      
+      setAreas(areaData)
+
+      if(areaData.length > 0) {
+        let defaultData = areaData.filter(a => a.code == "US")
+        
+        if(defaultData.length > 0) {
+          setSelectedArea(defaultData[0])
+        }
+      }
+    })
+  }, [])
+  /* CODE TO ADD ENDING
+   HERE */
+
+  function renderHeader() {
+...
+```
+
+Then you need to edit the Country code to load its data dynamically :
+```
+...
+          {/* Country Code */}
+              ...
+              <View style={{ justifyContent: 'center', marginLeft: 5 }}>
+                  <Image
+                    source={{ uri: selectedArea?.flag }}                    {/* changed the static US flag to the dynamic uri */}
+                    resizeMode="contain"
+                    style={{
+                      width: 30,
+                      height: 30
+                    }}
+                  />
+              </View>
+              <View style={{ justifyContent: 'center', marginLeft: 5 }}>
+                  <Text
+                    style={{
+                      color: COLORS.white,
+                      ...FONTS.body3
+                    }}
+                  >
+                    {selectedArea?.callingCode}           {/* changed 'US +1' to the dynamic value */}
+                  </Text>
+              </View>
+            </TouchableOpacity>
+...
+```
