@@ -688,3 +688,104 @@ Then you need to edit the Country code to load its data dynamically :
             </TouchableOpacity>
 ...
 ```
+
+#### Design country selection modal
+We will use a modal component, a TouchableWithoutFeedBack and a FlatList with a custom renderItem() function to render each country with it's flag and name.
+Add the `renderAreaCodesModal()` instruction in your `screens/SignUp.js` file.
+```
+...
+      <LinearGradient
+        colors={[COLORS.lime, COLORS.emerald]}
+        style={{ flex: 1 }}
+      >
+        <ScrollView>
+          {renderHeader()}
+          {renderLogo()}
+          {renderForm()}
+          {renderButton()}
+        </ScrollView>
+      </LinearGradient>
+      {renderAreaCodesModal()}  // <= Add this line
+...
+```
+
+Then define the modal  
+
+```
+function renderButton() {
+  ...
+}
+// CODE TO BE ADDED STARTS HERE
+function renderAreaCodesModal() {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+      >
+        <TouchableWithoutFeedback
+          onPress={() => setModalVisible(false)}
+        >
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <View
+              style={{
+                height: 400,
+                width: SIZES.width * 0.8,
+                backgroundColor: COLORS.lightGreen,
+                borderRadius: SIZES.radius * 0.5
+              }}
+            >
+              <FlatList
+                data={areas}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.code}
+                showsHorizontalScrollIndicator={false}
+                style={{
+                  padding: SIZES.padding * 2,
+                  marginBottom: SIZES.padding * 2
+                }}
+              />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    )
+  }
+// CODE TO BE ADDED ENDS HERE
+```
+
+Then we add our `renderItem()` function within the `renderAreaCodesModal()`
+```
+function renderAreaCodesModal() {
+  const renderItem = ({item}) => {
+      return (
+        <TouchableOpacity
+          style={{padding: SIZES.padding, flexDirection: 'row'}}
+          onPress={() => {
+            setSelectedArea(item)
+            setModalVisible(false)
+          }}
+        >
+          <Image
+            source={{uri: item.flag}}
+            style={{
+              width: 30,
+              height: 30,
+              marginRight: 10
+            }}
+          />
+          <Text style={{...FONTS.body4}}>{item.name}</Text>
+        </TouchableOpacity>
+      )
+    }
+
+    ...
+}
+...
+```
