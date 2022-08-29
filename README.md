@@ -1,8 +1,9 @@
 # Build a Digital Wallet with React Native
 Tutorial to build the UI for a digital wallet app in react native.
+I you have any question check me on twitter [@BloomVerga](http://twitter.com/BloomVerga)
 
 ## How do we build it ?
-All steps are in commits <- link to define
+All steps to reperform this project are in [commits](https://github.com/bloomverga/DigitalWallet/commits/master)
 
 ### Project initialisation
 Initialise the project with
